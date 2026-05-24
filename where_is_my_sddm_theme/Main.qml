@@ -218,6 +218,23 @@ Rectangle {
 
         }
 
+        ListView {
+            model: passwordInput.text.split("")
+            anchors.centerIn: parent
+            width: parent.width*(config.realValue("passwordInputWidth") || 0.5)
+            height: 200/96*passwordFontSize
+            clip: true
+            delegate: Text {
+                text: modelData
+                font.pointSize: passwordFontSize
+                font.bold: true
+                font.letterSpacing: 20/96*passwordFontSize
+                font.family: defaultFont
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
+            }
+        }
+
         TextInput {
             id: passwordInput
             width: parent.width*(config.realValue("passwordInputWidth") || 0.5)
@@ -226,6 +243,7 @@ Rectangle {
             font.bold: true
             font.letterSpacing: 20/96*passwordFontSize
             font.family: defaultFont
+            color: "#00000000"
             anchors {
                 verticalCenter: parent.verticalCenter
                 horizontalCenter: parent.horizontalCenter
@@ -241,8 +259,7 @@ Rectangle {
             cursorVisible: config.boolValue("passwordInputCursorVisible")
             onAccepted: {
                 if (text != "" || config.boolValue("passwordAllowEmpty")) {
-                    sddm.login(userModel.data(userModel.index(currentUsersIndex, 0), usernameRole)
- || "123test", text, currentSessionsIndex);
+                    sddm.login(userModel.data(userModel.index(currentUsersIndex, 0), usernameRole) || "123test", text, currentSessionsIndex);
                 }
             }
             Rectangle {
