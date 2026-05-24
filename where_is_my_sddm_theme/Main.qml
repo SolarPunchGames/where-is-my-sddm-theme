@@ -243,7 +243,7 @@ Rectangle {
             font.bold: true
             font.letterSpacing: 20/96*passwordFontSize
             font.family: defaultFont
-            color: "#00000000"
+            color: "transparent"
             anchors {
                 verticalCenter: parent.verticalCenter
                 horizontalCenter: parent.horizontalCenter
